@@ -3,26 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Videy</title>
+<title>Video Player</title>
 
 <style>
 body{
 margin:0;
-background:#fff;
+background:#000;
 font-family:Arial;
 text-align:center;
 }
 
 video{
 width:100%;
-max-width:900px;
-margin-top:20px;
+height:100vh;
 background:#000;
 }
 
 .download-btn{
-display:inline-block;
-margin:20px;
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
 padding:12px 25px;
 background:#6a5cff;
 color:#fff;
@@ -35,18 +36,16 @@ font-weight:bold;
 
 <body>
 
-<video id="v" controls autoplay muted playsinline></video>
-
-<br>
+<video id="v" controls autoplay playsinline></video>
 
 <a id="dl" class="download-btn" href="#" target="_blank">
 DOWNLOAD
 </a>
 
 <script>
-const path = window.location.pathname;
+const p = new URLSearchParams(location.search);
 
-const id = path.split("/").pop().replace(".mp4","");
+const id = p.get("id");
 
 const video = "https://cdn.videiyy.cc/" + id + ".mp4";
 
